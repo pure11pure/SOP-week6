@@ -1,16 +1,28 @@
 package com.example.week6.pojo;
 
+import lombok.Data;
+
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 
+@Data // ใช้ Lombok annotation @Data เพื่อสร้าง getter, setter, toString, hashCode, และ equals ให้อัตโนมัติ
 public class Wizards implements Serializable {
-    //เป็นมาตรฐานในการจัดเก็บและส่งอ็อบเจกต์ใน Java
+    // (implement Serializable) เป็นการบอก Java ว่าอ็อบเจกต์ของคลาส Wizards
+    // สามารถถูก serialize และ deserialize ได้
+    // และจะช่วยป้องกันปัญหา java.io.NotSerializableException
 
-    //เก็บข้อมูลเกี่ยวกับพ่อมด (Wizards) ที่ถูกดึงมาจากฐานข้อมูลหรืออื่น ๆ
-    //สิ่งที่คลาสนี้ทำคือกำหนดโครงสร้างข้อมูลที่จะถูกใช้ในรูปแบบของ ArrayList ของอ็อบเจกต์ Wizard แล้วรวมไว้ในอ็อบเจกต์ชื่อ wizards
-    //เพื่อให้ง่ายต่อการเข้าถึงและใช้ข้อมูล
-    public ArrayList<Wizard> wizards;
-    //Wizards เป็นโครงสร้างข้อมูลที่ถูกใช้ในการเก็บรายการของพ่อมด
-    //โดย wizards เป็นอาร์เรย์หรือรายการของอ็อบเจกต์ (Wizard)
+    // (List) --> ความยืดหยุ่นและสามารถเปลี่ยน model เป็น List อื่น ๆ ในอนาคต
+    // (ArrayList) --> เฉพาะของ ArrayList และไม่ต้องการเปลี่ยน model เป็นชนิดอื่น ๆ ในภายหลัง
+                       // มีความสามารถในการจัดเก็บข้อมูลแบบแถว
+                        // สามารถใช้เมธอดที่เป็นพิเศษของ ArrayList ได้ เช่น
+                        // add(), remove(), get(), และอื่น ๆ
+
+    private List<Wizard> model; // ประกาศตัวแปร model ที่เป็น List ของ Wizard
+    public Wizards(){} // สร้างคอนสตรักเตอร์เริ่มต้นไม่รับพารามิเตอร์
+
+    public Wizards(List<Wizard> model){
+        this.model = model;
+    }
+
 }
